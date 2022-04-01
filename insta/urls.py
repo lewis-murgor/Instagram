@@ -19,4 +19,6 @@ from django.urls import re_path,include
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'',include('gram.urls')),
+    re_path(r'^accounts/', include('django_registration.backends.one_step.urls')), 
+    re_path(r'^accounts/', include('django.contrib.auth.urls')), 
 ]
