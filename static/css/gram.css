@@ -1,0 +1,19 @@
+.welcome {
+    text-align: center;
+    margin-top: 20%;
+}
+h1 {
+    text-align: center;
+    font-family: Courgette;
+    margin-top: 60px;
+}
+.join {
+    width: 250px;
+}
+body {
+    background-color: black;
+    color: white;
+}
+.authenticate {
+    color: black;
+}
