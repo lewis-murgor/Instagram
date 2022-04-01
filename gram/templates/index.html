@@ -1,2 +1,44 @@
+{%extends "base.html"%}
 {% load bootstrap3 %}
-<h1>Lewis</h1>
+
+{% block content %}
+{{block.super}}
+
+<div class="container">
+    <h1>Instagram</h1>
+    <div class="welcome">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <br>
+                <br>
+                <h4>
+                    <strong>
+                    <em>
+                        Join Instagram today and post your favourite photos and
+                        <br>
+                        also see your friends photos
+                    </em>
+                    </strong>
+                </h4>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p class="authenticate">Create an account.</p>
+                        <a href="/accounts/register"><button class="btn btn-danger join">Sign up</button></a>
+                        <br>
+                        <br>
+                        <p class="authenticate">Already have an account?</p>
+                        <a href="/accounts/login"><button class="btn btn-success join">Log in</button></a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+{% endblock %}
+    
