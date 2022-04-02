@@ -1,8 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
-from .models import Image
+from .models import Image, Profile
 from .forms import NewImageForm
 from django.contrib.auth.decorators import login_required
+from .email import send_welcome_email
 
 # Create your views here.
 def index(request):
@@ -14,6 +15,20 @@ def timeline(request):
     photos = Image.objects.all()
 
     return render(request, 'instagram/timeline.html',{"photos":photos})
+
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+
+    if 'image' in request.GET and request.GET["image"]:
+        name = request.GET.get("image")
+        searched_images = Image.search_by_name(name)
+        message = f"{name}"
+
+        return render(request, 'instagram/search.html',{"message":message,"images": searched_images})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'instagram/search.html',{"message":message})
 
 @login_required(login_url='/accounts/login/')
 def new_image(request):
@@ -39,6 +54,9 @@ def image(request,image_id):
 
     return render(request,"instagram/image.html", {"image":image})
 
-def profile(request):
 
-    return render(request, 'profile.html')
+def profile(request):
+    current_user = request.user
+    images = Image.objects.filter(profile_id = current_user)
+
+    return render(request, 'profile.html', {"images":images})
