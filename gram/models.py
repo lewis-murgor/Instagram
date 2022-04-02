@@ -6,6 +6,20 @@ from tinymce.models import HTMLField
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to = 'images/')
     Bio = models.TextField()
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.Bio
+
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
+
+    def update_profile(self, updated_profile):
+        self.profile = updated_profile
+        self.save()
 
 class Image(models.Model):
     image = models.ImageField(upload_to = 'images/')
@@ -24,6 +38,15 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
+
+    def update_caption(self, updated_caption):
+        self.caption = updated_caption
+        self.save
+
+    @classmethod
+    def search_by_name(cls,name):
+        image = cls.objects.filter(name__icontains=name)
+        return image
 
 class Like(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
