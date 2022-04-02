@@ -1,0 +1,3 @@
+Hello {{name}},
+
+Welcome to Insta. You can post your photos and also see your friends' photos.
