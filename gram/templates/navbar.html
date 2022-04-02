@@ -1,0 +1,38 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand insta" style="color: white;" href="{% url 'timeline' %}"><strong>Insta</strong></a>
+        </div>
+        <div class="col-sm-4 col-md-2 navbar-right">
+            {% if user.is_authenticated %}
+            <a class="navbar-brand" style="color: white;" href="{% url 'profile' %}"><em>{{user}}</em></a>
+            <ul>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
+                            <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{%url 'timeline'%}">Home</a>
+                        </li>
+                        <li>
+                            <a href="{%url 'new-image'%}">Post</a>
+                        </li>
+                        <li>
+                            <a href="/accounts/password_change">Change Password</a>
+                        </li>
+                        <li>
+                            <a href="/accounts/logout">Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            {% else %}
+            <li>
+                <a class='btn btn-default' href="/accounts/login">Login</a>
+            </li>
+
+            {% endif %}
+        </div>
+    </div>
+</nav>
