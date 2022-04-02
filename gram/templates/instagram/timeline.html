@@ -1,0 +1,25 @@
+{%extends "instagram/base.html"%}
+
+{% block content %}
+{{block.super}}
+<div class="container-fluid">
+    {% for photo in photos %}
+        <div class="col-md-4 col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading user">
+                    {{user}}
+                </div>
+                <a href="{% url 'image' photo.id %}"><img src="{{photo.image.url}}" class="img-responsive" alt="Image"></a>
+                <div class="panel-footer">
+                    {% autoescape on %}<p>{{photo.caption| safe}}</p>{% endautoescape %}
+                </div>
+            </div>
+        </div>
+
+    {% empty %}
+    <div class="row">
+      <h2 class="text-center">There are No images yet</h2>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
