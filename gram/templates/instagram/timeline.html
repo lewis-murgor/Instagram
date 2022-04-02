@@ -7,11 +7,13 @@
         <div class="col-md-4 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading user">
-                    {{user}}
+                    {{photo.profile}}
                 </div>
                 <a href="{% url 'image' photo.id %}"><img src="{{photo.image.url}}" class="img-responsive" alt="Image"></a>
                 <div class="panel-footer">
+                    <p class="name">{{photo.name}}</p>
                     {% autoescape on %}<p>{{photo.caption| safe}}</p>{% endautoescape %}
+                    <p>{{photo.date|date}}</p>
                 </div>
             </div>
         </div>
