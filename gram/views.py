@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from .models import Image, Profile
-from .forms import NewImageForm
+from .forms import NewImageForm, UpdateProfileForm
 from django.contrib.auth.decorators import login_required
 from .email import send_welcome_email
 
@@ -54,9 +54,25 @@ def image(request,image_id):
 
     return render(request,"instagram/image.html", {"image":image})
 
-
+@login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
     images = Image.objects.filter(profile_id = current_user)
+    profile = Profile.objects.filter(user_id = current_user)
 
-    return render(request, 'profile.html', {"images":images})
+    return render(request, 'profile.html', {"images":images, "profile":profile})
+
+@login_required(login_url='/accounts/login/')
+def update_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = UpdateProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = current_user
+            profile.save()
+        return redirect('profile')
+
+    else:
+        form = UpdateProfileForm()
+    return render(request, 'update_profile.html', {"form": form})
