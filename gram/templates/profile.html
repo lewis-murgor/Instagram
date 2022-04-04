@@ -1,28 +1,70 @@
 {%extends "instagram/base.html"%}
 {% block content %}
 {{block.super}}
-<div class="container-fluid">
+<div class="container-fluid profile">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3 col-sm-4">
             {% if profile.profile_photo %}
             <img src="{{profile.profile_photo.url}}" class="img-thumbnail" alt="profile_photo">
             {%else%}
-            <img src="https://avatars.githubusercontent.com/u/95276296?v=4" width="200px"  alt="profile photo">
+            <img src="https://avatars.githubusercontent.com/u/95276296?v=4" width="250px"  alt="profile photo">
             {% endif %}
+        </div>
+        <div class="col-md-3 col-sm-4">
             <br>
             <br>
+            {%if images%}
+            <p class="text-center"><strong>{{images|length}}</strong></p>
+            <p class="text-center">posts</p>
+            {% else %}
+            <p class="text-center"><strong>0</strong></p>
+            <p class="text-center">posts</p>
+            {% endif %}
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <br>
+            <br>
+            {%if profile.followers%}
+            <p class="text-center"><strong>{{profile.followers|length}}</strong></p>
+            <p class="text-center">Followers</p>
+            {% else %}
+            <p class="text-center"><strong>0</strong></p>
+            <p class="text-center">Followers</p>
+            {% endif %}
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <br>
+            <br>
+            {%if profile.following%}
+            <p class="text-center"><strong>{{profile.following|length}}</strong></p>
+            <p class="text-center">Following</p>
+            {% else %}
+            <p class="text-center"><strong>0</strong></p>
+            <p class="text-center">Following</p>
+            {% endif %}
+        </div>
+    </div>
+        
+        
+    <div class="row">
+        <div class="col-md-4 col-sm-4">
             <p><strong>{{user}}</strong></p>
-            <br>
             {% if profile.Bio %}
             <p>{{profile.Bio}}</p>
             {%else%}
             <p>No Bio</p>
             {% endif %}
         </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body edit">
+                    <a href="{%url 'update-profile'%}" style="color: black;">Edit Profile</a>
+                </div>
+            </div>
+            <br>
+        </div>
     </div>
-    <br>
     <hr>
-
     {% for image in images %}
     <div class="col-md-4 col-sm-12">
         <div class="panel panel-default">
@@ -31,9 +73,14 @@
             </div>
             <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image"></a>
             <div class="panel-footer">
+                <a href="{% url 'like' image.id %}"><i class="far fa-heart" style="font-size:40px;color: black;"></i></a>
+                    <strong>{{photo.likes|length}} likes</strong>
                 <p class="name">{{image.name}}</p>
                 {% autoescape on %}<p>{{image.caption| safe}}</p>{% endautoescape %}
                 <p>{{image.date|date}}</p>
+                <a href="{% url 'comment' %}">view all comments</a>
+                <br>
+                <a href="{% url 'write-comment' %}">Write a comment</a>
             </div>
         </div>
     </div>

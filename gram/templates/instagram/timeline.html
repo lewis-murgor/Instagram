@@ -2,7 +2,7 @@
 
 {% block content %}
 {{block.super}}
-<div class="container-fluid">
+<div class="container-fluid timeline">
     {% for photo in photos %}
         <div class="col-md-4 col-sm-12">
             <div class="panel panel-default">
@@ -11,9 +11,14 @@
                 </div>
                 <a href="{% url 'image' photo.id %}"><img src="{{photo.image.url}}" class="img-responsive" alt="Image"></a>
                 <div class="panel-footer">
+                    <a href="{% url 'like' photo.id %}"><i class="far fa-heart" style="font-size:40px;color: black;"></i></a>
+                    <p><strong>{{photo.likes|length}} likes</strong></p>
                     <p class="name">{{photo.name}}</p>
                     {% autoescape on %}<p>{{photo.caption| safe}}</p>{% endautoescape %}
                     <p>{{photo.date|date}}</p>
+                    <a href="{% url 'comment' %}">view all comments</a>
+                    <br>
+                    <a href="{% url 'write-comment' %}">Write a comment</a>
                 </div>
             </div>
         </div>

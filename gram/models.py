@@ -6,7 +6,9 @@ from tinymce.models import HTMLField
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to = 'images/')
     Bio = models.TextField()
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    followers = models.IntegerField(default=0)
+    following = models.IntegerField(default=0)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.Bio
@@ -26,7 +28,7 @@ class Image(models.Model):
     name = models.CharField(max_length =60)
     caption = HTMLField()
     date = models.DateTimeField(auto_now_add=True)
-    profile = models.ForeignKey(User,on_delete=models.CASCADE)
+    profile = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     likes = models.IntegerField(default=0)
     comments = models.TextField()
 
@@ -49,10 +51,18 @@ class Image(models.Model):
         return image
 
 class Like(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
-    image = models.ForeignKey(Image,on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.image
 
 class Comment(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     image = models.ForeignKey(Image,on_delete=models.CASCADE)
+    comment = models.TextField()
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.image
 
