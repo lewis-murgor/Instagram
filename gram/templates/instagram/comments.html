@@ -1,0 +1,20 @@
+{%extends "instagram/base.html"%}
+
+{% block content %}
+{{block.super}}
+<div class="container-fluid">
+    {% for comment in comments%}
+    <p>
+        <strong>
+            {{comment.user}}
+        </strong>
+        {{comment.comment}}
+    </p>
+    <p>{{comment.pub_date}}</p>
+    {% empty %}
+    <div class="row">
+      <h2 class="text-center">No comments yet</h2>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
