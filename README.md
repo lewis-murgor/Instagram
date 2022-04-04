@@ -5,7 +5,7 @@
 #### By **Lewis Murgor**
 
 ## Below is a part of the project.
-
+<img src="project.png">
 
 
 ## Description
@@ -21,7 +21,7 @@ This is a clone website of instagram.It requires a user to sign up and login int
 The application has no known bugs.
 
 ## Live Site
-The live link of the project is  
+The live link of the project is  https://insta-29.herokuapp.com/
 
 ## Technologies Used
 * Python
