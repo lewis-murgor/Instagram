@@ -13,3 +13,12 @@ h1 {
 .name {
     font-family: Lobster;
 }
+.edit {
+    text-align: center;
+}
+.profile {
+    background-color: rgba(245, 245, 245, 0.479);
+}
+.timeline{
+    background-color: rgba(245, 245, 245, 0.479);
+}
