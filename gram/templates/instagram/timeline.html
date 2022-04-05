@@ -16,16 +16,12 @@
                         {% csrf_token %}
                         <input type="hidden" name="image_id" value="{{ photo.id }}"> 
                         {% if user not in photo.likes.all %}
-                        <button type="submit"><i class="far fa-heart" style="font-size:40px;color: red;"></i></button> 
-                        {% else %}
                         <button type="submit"><i class="far fa-heart" style="font-size:40px;color: black;"></i></button> 
+                        {% else %}
+                        <button type="submit"><i class="far fa-heart" style="font-size:40px;color: red;"></i></button> 
                         {% endif %}
                     </form>
-                    {% if photo.likes.all.count == 1 %}
-                    <p><strong>{{photo.likes.all.count}} like</strong></p>
-                    {% else %}
-                    <p><strong>{{ photo.likes.all.count }} likes</strong></p> 
-                    {% endif %}
+                    <p><strong>{{photo.likes.all.count}} likes</strong></p>
                     <p class="name">{{photo.name}}</p>
                     {% autoescape on %}<p>{{photo.caption| safe}}</p>{% endautoescape %}
                     <p>{{photo.date|date}}</p>

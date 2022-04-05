@@ -78,9 +78,9 @@
                     {% csrf_token %}
                     <input type="hidden" name="image_id" value="{{ image.id }}"> 
                     {% if user not in image.likes.all %}
-                    <button type="submit"><i class="far fa-heart" style="font-size:40px;color: red;"></i></button> 
-                    {% else %}
                     <button type="submit"><i class="far fa-heart" style="font-size:40px;color: black;"></i></button> 
+                    {% else %}
+                    <button type="submit"><i class="far fa-heart" style="font-size:40px;color: red;"></i></button> 
                     {% endif %}
                 </form>
                 {% if image.likes.all.count == 1 %}
