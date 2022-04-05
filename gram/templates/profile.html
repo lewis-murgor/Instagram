@@ -83,11 +83,7 @@
                     <button type="submit"><i class="far fa-heart" style="font-size:40px;color: red;"></i></button> 
                     {% endif %}
                 </form>
-                {% if image.likes.all.count == 1 %}
                 <p><strong>{{image.likes.all.count}} like</strong></p>
-                {% else %}
-                <p><strong>{{ image.likes.all.count }} likes</strong></p> 
-                {% endif %}
                 <p class="name">{{image.name}}</p>
                 {% autoescape on %}<p>{{image.caption| safe}}</p>{% endautoescape %}
                 <p>{{image.date|date}}</p>
