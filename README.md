@@ -9,7 +9,7 @@
 
 
 ## Description
-This is a clone website of instagram.It requires a user to sign up and login into the website to start using the website.It allows users to view different photos posted by different people and they can click on the photo to view all the details of the photo. Users can also comment on the photos.The website also allows a user to post photos they want.The users can also search for photos using the photo name.
+This is a clone website of instagram.It requires a user to sign up and login into the website to start using the website.It allows users to view different photos posted by different people and they can click on the photo to view all the details of the photo. Users can also comment on the photos and like the photos.The website also allows a user to post photos they want.The users can also search for photos using the photo name.
 
 ## Setup/Installation Requirements
 * You can clone this repository by running 'git clone https://github.com/lewis-murgor/Instagram' in your terminal.

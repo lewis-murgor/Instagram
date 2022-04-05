@@ -114,27 +114,17 @@ def comment(request):
     return render(request, 'instagram/comments.html',{"comments":comments})
 
 @login_required(login_url='/accounts/login/')
-def like(request, id):
+def like(request):
     current_user = request.user
-    likes = Like.objects.filter(image_id = id).first()
+    if request.method == "POST":
+        image_id = request.POST.get('image_id')
+        image = Image.objects.get(id=image_id)
 
-    if Like.objects.filter(image_id = id, user_id = current_user.id).exists():
-        likes.delete()
-
-        image = Image.objects.get(id=id)
-        if image.likes == 0:
-            image.likes = 0
-            image.save()
+        if current_user in image.likes.all():
+            image.likes.remove(current_user)
         else:
-            image.likes -= 1
-            image.save()
-        return redirect('timeline')
-    else:
-        likes = Like(image_id = id, user_id = current_user.id)
-        likes.save()
-        image = Image.objects.get(id = id)
-        image.likes += 1
-        image.save()
-        return redirect('timeline')
+            image.likes.add(current_user)
+    return redirect('timeline')
+    
     
 
