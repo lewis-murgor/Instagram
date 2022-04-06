@@ -10,7 +10,7 @@
                 <div class="panel-heading user">
                     {{photo.profile}}
                 </div>
-                <a href="{% url 'image' photo.id %}"><img src="{{photo.image.url}}" class="img-responsive" alt="Image"></a>
+                <a href="{% url 'image' photo.id %}"><img src="{{photo.image.url}}" class="img-responsive" width="1000px" height="2000px" alt="Image"></a>
                 <div class="panel-footer">
                     <form action="{% url 'like' %}" method="post">
                         {% csrf_token %}
