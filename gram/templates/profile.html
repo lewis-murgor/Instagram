@@ -83,7 +83,7 @@
                     <button type="submit"><i class="far fa-heart" style="font-size:40px;color: red;"></i></button> 
                     {% endif %}
                 </form>
-                <p><strong>{{image.likes.all.count}} like</strong></p>
+                <p><strong>{{image.likes.all.count}} likes</strong></p>
                 <p class="name">{{image.name}}</p>
                 {% autoescape on %}<p>{{image.caption| safe}}</p>{% endautoescape %}
                 <p>{{image.date|date}}</p>
