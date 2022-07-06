@@ -5,3 +5,7 @@ h1 {
 body {
     background-color: rgba(245, 245, 245, 0.479);
 }
+.thanks {
+    text-align: center;
+    margin-top: 10%;
+}
