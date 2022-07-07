@@ -18,13 +18,23 @@
 </head>
 
 <body>
+  {% include "navbar.html" %}
+  <div class="container comment">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <form  action="{%url 'write-comment'%}" method="post" enctype="multipart/form-data">
+          {%csrf_token%}
+      
+          {% bootstrap_form form%}
+          <input type="submit" class="btn btn-success btn-lg" value="Comment">
+        </form>
+      </div>
+      <div class="col-md-4 col-sm-4"></div>
+    </div>
+  </div>
 
-  <form  action="{%url 'write-comment'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-
-    {% bootstrap_form form%}
-    <input type="submit" class="btn btn-success btn-lg" value="Comment">
-  </form>
+  
 
    {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

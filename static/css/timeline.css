@@ -22,3 +22,12 @@ h1 {
 .timeline{
     background-color: rgba(245, 245, 245, 0.479);
 }
+.avatar {
+    border-radius: 50%;
+}
+.comment {
+    margin-top: 10%;
+}
+.post {
+    margin-top: 8%;
+}

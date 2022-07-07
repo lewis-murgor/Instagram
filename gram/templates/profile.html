@@ -8,10 +8,15 @@
             {% if profile.profile_photo %}
             <img src="{{profile.profile_photo.url}}" class="img-thumbnail" alt="profile_photo">
             {%else%}
-            <img src="https://avatars.githubusercontent.com/u/95276296?v=4" width="250px"  alt="profile photo">
+            <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" width="250px"  alt="profile photo">
             {% endif %}
         </div>
         <div class="col-md-3 col-sm-4">
+            <br>
+            <br>
+            <h3><strong><em>{{user}}</em></strong></h3>
+        </div>
+        <div class="col-md-1 col-sm-4">
             <br>
             <br>
             {%if images%}
@@ -22,34 +27,12 @@
             <p class="text-center">posts</p>
             {% endif %}
         </div>
-        <div class="col-md-3 col-sm-4">
-            <br>
-            <br>
-            {%if profile.followers%}
-            <p class="text-center"><strong>{{profile.followers|length}}</strong></p>
-            <p class="text-center">Followers</p>
-            {% else %}
-            <p class="text-center"><strong>0</strong></p>
-            <p class="text-center">Followers</p>
-            {% endif %}
-        </div>
-        <div class="col-md-3 col-sm-4">
-            <br>
-            <br>
-            {%if profile.following%}
-            <p class="text-center"><strong>{{profile.following|length}}</strong></p>
-            <p class="text-center">Following</p>
-            {% else %}
-            <p class="text-center"><strong>0</strong></p>
-            <p class="text-center">Following</p>
-            {% endif %}
-        </div>
-    </div>
         
+       
+    </div>
         
     <div class="row">
         <div class="col-md-4 col-sm-4">
-            <p><strong>{{user}}</strong></p>
             {% if profile.Bio %}
             <p>{{profile.Bio}}</p>
             {%else%}

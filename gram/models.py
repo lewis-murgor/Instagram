@@ -12,8 +12,6 @@ LIKE_CHOICE = (
 class Profile(models.Model):
     profile_photo = models.ImageField(upload_to = 'images/')
     Bio = models.TextField()
-    followers = models.IntegerField(default=0)
-    following = models.IntegerField(default=0)
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 
     def __str__(self):

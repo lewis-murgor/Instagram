@@ -18,13 +18,27 @@
 </head>
 
 <body>
+  {% include "navbar.html" %}
+  <div class="container post">
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <form  action="{%url 'update-profile'%}" method="post" enctype="multipart/form-data">
+              {%csrf_token%}
+          
+              {% bootstrap_form form%}
+              <input type="submit" class="btn btn-success btn-lg" value="Edit Profile">
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
 
-  <form  action="{%url 'update-profile'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-
-    {% bootstrap_form form%}
-    <input type="submit" class="btn btn-success btn-lg" value="Edit Profile">
-  </form>
+  
 
    {% block scripts %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
