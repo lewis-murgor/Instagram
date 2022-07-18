@@ -14,7 +14,8 @@ urlpatterns=[
     re_path(r'^write/comment$', views.write_comment, name='write-comment'),
     re_path(r'^comment/$', views.comment, name='comment'),
     re_path(r'^like/',views.like,name ='like'),
-    re_path(r'^accounts/profile', views.profile, name='profile')
+    re_path(r'^accounts/profile', views.profile, name='profile'),
+    re_path(r'^accounts/register', views.register, name='register')
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

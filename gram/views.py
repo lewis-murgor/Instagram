@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth import login
+from django.contrib.auth.models import User
 from django.http  import HttpResponse,Http404,HttpResponseRedirect
 from .models import Comment, Image,Like, Profile
-from .forms import CommentForm, NewImageForm, UpdateProfileForm
+from .forms import CommentForm, NewImageForm, UpdateProfileForm, RegistrationForm
 from django.contrib.auth.decorators import login_required
 from .email import send_welcome_email
 
@@ -15,6 +17,18 @@ def timeline(request):
     photos = Image.objects.all()
 
     return render(request, 'instagram/timeline.html',{"photos":photos})
+
+def register(request):
+    form = RegistrationForm()
+    current_user = request.user
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('timeline')
+
+    return render(request, 'registration/register.html', {"form":form, "user":current_user})
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):

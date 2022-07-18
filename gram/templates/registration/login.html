@@ -1,4 +1,4 @@
-{%extends "django_registration/base.html"%}
+{%extends "registration/base.html"%}
 {% load bootstrap3 %}
 {% block content %}
 <div class="container">
@@ -9,11 +9,10 @@
       {% if form.errors %}
         <p> Password or Username is incorrect </p>
       {% endif %}
-      <div class="panel panel-default">
+      <div class="panel panel-default login">
         <h1>Insta</h1>
-
+        <hr>
         <div class="panel-body">
-
           <form  action="/accounts/login/" method="post">
             {% csrf_token %}
             {% bootstrap_form form%}
