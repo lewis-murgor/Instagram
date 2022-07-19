@@ -1,5 +1,6 @@
 .insta {
-    font-family: Lobster;
+    font-family: Courgette;
+    font-size: xx-large;
 }
 .panel-footer {
     background-color: white;
@@ -19,9 +20,6 @@ h1 {
 .profile {
     background-color: rgba(245, 245, 245, 0.479);
 }
-.timeline{
-    background-color: rgba(245, 245, 245, 0.479);
-}
 .avatar {
     border-radius: 50%;
 }
@@ -30,4 +28,8 @@ h1 {
 }
 .post {
     margin-top: 8%;
+}
+.header {
+    padding-right: 15%;
+    padding-left: 15%;
 }
