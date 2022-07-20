@@ -77,7 +77,7 @@
                 <p><strong>{{image.likes.all.count}} likes</strong></p>
                 <p class="name">{{image.name}}</p>
                 {% autoescape on %}<p>{{image.caption| safe}}</p>{% endautoescape %}
-                <a href="{% url 'comment' %}">view all comments</a>
+                <a href="{% url 'comment' image.id%}">view all comments</a>
                 <p>{{image.date|date}}</p>
             </div>
         </div>

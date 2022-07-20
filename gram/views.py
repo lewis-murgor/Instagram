@@ -125,10 +125,11 @@ def write_comment(request,image_id):
     return render(request, 'instagram/write_comment.html', {"form": form, "image": image})
 
 @login_required(login_url='/accounts/login/')
-def comment(request):
-    comments = Comment.objects.all()
-
-    return render(request, 'instagram/comments.html',{"comments":comments})
+def comment(request, id):
+    image = Image.objects.get(id = id)
+    comment = Comment.objects.filter(image_id = id).all
+    
+    return render(request, 'instagram/comments.html',{"image":image,"comment":comment})
 
 @login_required(login_url='/accounts/login/')
 def like(request):

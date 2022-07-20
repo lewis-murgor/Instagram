@@ -34,7 +34,7 @@
                     <p><strong>{{photo.likes.all.count}} likes</strong></p>
                     <p class="name">{{photo.name}}</p>
                     {% autoescape on %}<p>{{photo.caption| safe}}</p>{% endautoescape %}
-                    <a href="{% url 'comment' %}">view all comments</a>
+                    <a href="{% url 'comment' photo.id%}">view all comments</a>
                     <p>{{photo.date|date}}</p>
                 </div>
             </div>
