@@ -11,12 +11,12 @@ class NewImageForm(forms.ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user','followers','following']
+        exclude = ['user']
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude = ['user','image','pub_date']
+        fields = ['comment']
 
 class RegistrationForm(UserCreationForm):
     class Meta:

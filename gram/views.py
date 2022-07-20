@@ -107,19 +107,22 @@ def update_profile(request):
 
 
 @login_required(login_url='/accounts/login/')
-def write_comment(request):
-    current_user = request.user
+def write_comment(request,image_id):
+    form = CommentForm()
+    image = Image.objects.get(id = image_id)
+    user = request.user
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
             comment = form.save(commit=False)
-            comment.user = current_user
+            comment.user = user
+            comment.image = image
             comment.save()
         return redirect('timeline')
 
     else:
         form = CommentForm()
-    return render(request, 'instagram/write_comment.html', {"form": form})
+    return render(request, 'instagram/write_comment.html', {"form": form, "image": image})
 
 @login_required(login_url='/accounts/login/')
 def comment(request):
