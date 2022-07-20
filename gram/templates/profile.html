@@ -5,10 +5,10 @@
 <div class="container-fluid profile">
     <div class="row">
         <div class="col-md-3 col-sm-4">
-            {% if profile.profile_photo.url %}
-            <img src="{{profile.profile_photo.url}}" class="img-thumbnail" alt="profile_photo">
-            {%else%}
+            {% if not profile.profile_photo.url %}
             <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" width="250px"  alt="profile photo">
+            {%else%}
+            <img class="avatar" src="{{profile.profile_photo.url}}" alt="profile_photo">
             {% endif %}
         </div>
         <div class="col-md-3 col-sm-4">
@@ -36,7 +36,7 @@
             {% if profile.Bio %}
             <p>{{profile.Bio}}</p>
             {%else%}
-            <p>No Bio</p>
+            <p></p>
             {% endif %}
         </div>
         <div class="col-md-4 col-sm-4">
@@ -53,26 +53,32 @@
     <div class="col-md-4 col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading user">
-                {{image.profile}}
+                {% if not image.profile.profile_photo.url %}
+                    <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" height="40px" alt="profile photo">
+                    {%else%}
+                    <img class="avatar" src="{{image.profile.profile_photo.url}}" height="40px" alt="profile_photo">
+                    {% endif %}
+                    {{image.profile}}
             </div>
             <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image"></a>
             <div class="panel-footer">
-                <form action="{% url 'like' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="image_id" value="{{ image.id }}"> 
-                    {% if user not in image.likes.all %}
-                    <button type="submit"><i class="far fa-heart" style="font-size:40px;color: black;"></i></button> 
-                    {% else %}
-                    <button type="submit"><i class="far fa-heart" style="font-size:40px;color: red;"></i></button> 
-                    {% endif %}
-                </form>
+                <div class="reactions">
+                    <form action="{% url 'like' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="image_id" value="{{ image.id }}"> 
+                        {% if user not in image.likes.all %}
+                        <button type="submit"><i class="far fa-heart" style="font-size:25px;color: black;"></i></button> 
+                        {% else %}
+                        <button type="submit"><i class="far fa-heart" style="font-size:25px;color: red;"></i></button> 
+                        {% endif %}
+                    </form>
+                    <a href="{% url 'write-comment' image.id%}"><i class="fa fa-comment" style="font-size:30px;" aria-hidden="true"></i></a>
+                </div>
                 <p><strong>{{image.likes.all.count}} likes</strong></p>
                 <p class="name">{{image.name}}</p>
                 {% autoescape on %}<p>{{image.caption| safe}}</p>{% endautoescape %}
-                <p>{{image.date|date}}</p>
                 <a href="{% url 'comment' %}">view all comments</a>
-                <br>
-                <a href="{% url 'write-comment' image.id%}">Write a comment</a>
+                <p>{{image.date|date}}</p>
             </div>
         </div>
     </div>

@@ -33,3 +33,6 @@ h1 {
     padding-right: 15%;
     padding-left: 15%;
 }
+.reactions {
+    display: flex;
+}

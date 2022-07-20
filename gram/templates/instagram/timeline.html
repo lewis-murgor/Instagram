@@ -10,30 +10,26 @@
         <div class="col-md-6 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading user" style="background-color:white ;">
-                    {% if photo.profile.profile_photo.url %}
-                    <img src="{{photo.profile.profile_photo.url}}" height="40px" class="img-thumbnail" alt="profile_photo">
-                    {%else%}
+                    {% if not photo.profile.profile_photo.url %}
                     <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" height="40px" alt="profile photo">
+                    {%else%}
+                    <img class="avatar" src="{{photo.profile.profile_photo.url}}" height="40px" alt="profile_photo">
                     {% endif %}
                     {{photo.profile}}
                 </div>
                 <a href="{% url 'image' photo.id %}"><img src="{{photo.image.url}}"  class="img-responsive" height="2000px" alt="Image"></a>
                 <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <form action="{% url 'like' %}" method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="image_id" value="{{ photo.id }}"> 
-                                {% if user not in photo.likes.all %}
-                                <button type="submit"><i class="far fa-heart" style="font-size:40px;color: black;"></i></button> 
-                                {% else %}
-                                <button type="submit"><i class="far fa-heart" style="font-size:40px;color: red;"></i></button> 
-                                {% endif %}
-                            </form>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="{% url 'write-comment' photo.id%}"><i class="fa fa-comment" style="font-size:40px;" aria-hidden="true"></i></a>
-                        </div>
+                    <div class="reactions">
+                        <form action="{% url 'like' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="image_id" value="{{ photo.id }}"> 
+                            {% if user not in photo.likes.all %}
+                            <button type="submit"><i class="far fa-heart" style="font-size:25px;color: black;"></i></button> 
+                            {% else %}
+                            <button type="submit"><i class="far fa-heart" style="font-size:25px;color: red;"></i></button> 
+                            {% endif %}
+                        </form>
+                        <a href="{% url 'write-comment' photo.id%}"><i class="fa fa-comment" style="font-size:30px;" aria-hidden="true"></i></a>
                     </div>
                     <p><strong>{{photo.likes.all.count}} likes</strong></p>
                     <p class="name">{{photo.name}}</p>
