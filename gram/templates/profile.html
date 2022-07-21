@@ -53,12 +53,12 @@
     <div class="col-md-4 col-sm-12">
         <div class="panel panel-default">
             <div class="panel-heading user">
-                {% if not image.profile.profile_photo.url %}
-                    <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" height="40px" alt="profile photo">
-                    {%else%}
-                    <img class="avatar" src="{{image.profile.profile_photo.url}}" height="40px" alt="profile_photo">
-                    {% endif %}
-                    {{image.profile}}
+                {%if user.profile.profile_photo%}
+                <img class="avatar" id="photo" src="{{user.profile.profile_photo.url}}" alt="profile_photo">
+                {%else%}
+                <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" width="40px"  alt="profile photo">
+                {% endif %}
+                {{image.profile}}
             </div>
             <a href="{% url 'image' image.id %}"><img src="{{image.image.url}}" class="img-responsive" alt="Image"></a>
             <div class="panel-footer">

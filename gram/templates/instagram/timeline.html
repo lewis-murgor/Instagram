@@ -10,11 +10,6 @@
         <div class="col-md-6 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading user" style="background-color:white ;">
-                    {% if not photo.profile.profile_photo.url %}
-                    <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" height="40px" alt="profile photo">
-                    {%else%}
-                    <img class="avatar" src="{{photo.profile.profile_photo.url}}" height="40px" alt="profile_photo">
-                    {% endif %}
                     {{photo.profile}}
                 </div>
                 <a href="{% url 'image' photo.id %}"><img src="{{photo.image.url}}"  class="img-responsive" height="2000px" alt="Image"></a>
