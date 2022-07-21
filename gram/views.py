@@ -92,9 +92,13 @@ def profile(request):
 
 @login_required(login_url='/accounts/login/')
 def update_profile(request):
-    current_user = request.user
+    try:
+        current_user = request.user.profile
+    except Profile.DoesNotExist:
+        current_user = Profile(user=request.user)
+    
     if request.method == 'POST':
-        form = UpdateProfileForm(request.POST, request.FILES)
+        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = current_user
