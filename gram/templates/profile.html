@@ -5,10 +5,10 @@
 <div class="container-fluid profile">
     <div class="row">
         <div class="col-md-3 col-sm-4">
-            {% if not profile.profile_photo.url %}
-            <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" width="250px"  alt="profile photo">
+            {%if user.profile.profile_photo%}
+            <img class="avatar" id="profile" src="{{user.profile.profile_photo.url}}" alt="profile_photo">
             {%else%}
-            <img class="avatar" src="{{profile.profile_photo.url}}" alt="profile_photo">
+            <img class="avatar" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" width="250px"  alt="profile photo">
             {% endif %}
         </div>
         <div class="col-md-3 col-sm-4">
@@ -27,25 +27,25 @@
             <p class="text-center">posts</p>
             {% endif %}
         </div>
-        
-       
     </div>
-        
-    <div class="row">
-        <div class="col-md-4 col-sm-4">
-            {% if profile.Bio %}
-            <p>{{profile.Bio}}</p>
-            {%else%}
-            <p></p>
-            {% endif %}
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <div class="panel panel-default">
-                <div class="panel-body edit">
-                    <a href="{%url 'update-profile'%}" style="color: black;">Edit Profile</a>
-                </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                {% if user.profile.Bio %}
+                <p>{{user.profile.Bio}}</p>
+                {%else%}
+                <p></p>
+                {% endif %}
             </div>
-            <br>
+            <div class="col-md-4 col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body edit">
+                        <a href="{%url 'update-profile'%}" style="color: black;">Edit Profile</a>
+                    </div>
+                </div>
+                <br>
+            </div>
         </div>
     </div>
     <hr>

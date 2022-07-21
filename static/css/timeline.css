@@ -36,3 +36,7 @@ h1 {
 .reactions {
     display: flex;
 }
+#profile {
+    height: 200px;
+    width: 200px;
+}
